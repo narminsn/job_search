@@ -1,0 +1,72 @@
+{% load widget_tweaks %}
+
+<form method="POST" enctype="multipart/form-data" action="{% url 'skill_edit'  edu.id %}">
+    {% csrf_token %}
+    {% for field in forms %}
+        {#                                    {% render_field field class="form-control input-lg" placeholder=field.label style="background: #1a1e27;border:none;" %}#}
+
+        {% if forloop.counter == 3 or forloop.counter == 4 %}
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="form-group required">
+                    <div class="input-group datepick">
+                        {% render_field field class="form-control date2" name="date2" id="frmSaveOffice_startdt" placeholder=field.label style="background: #1a1e27;border:none;" %}
+
+                        {#                                                    <input value="{{ context.time.end_time }}" type="text"#}
+                        {#                                                    class="form-control date2"#}
+                        {#                                                    name="date2"#}
+                        {#                                                    id="frmSaveOffice_startdt"#}
+                        {#                                                    required readonly>#}
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% elif field.label == 'Description' %}
+            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                {% render_field field class="form-control input-lg" placeholder=field.label style="background: #1a1e27;border:none;" %}
+                {% if field.errors %}
+                    {% for msg in field.errors %}
+                        <span style="color: white;"
+                              class="text-danger">{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        {% else %}
+            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                {% render_field field class="form-control input-lg" placeholder=field.label style="background: #1a1e27;border:none;" %}
+                {% if field.errors %}
+                    {% for msg in field.errors %}
+                        <span style="color: white;"
+                              class="text-danger">{{ msg }}</span>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+
+        {% endif %}
+        {% if field.errors %}
+            {{ field.errors }}
+        {% endif %}
+    {% endfor %}
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="jp_adp_choose_resume_bottom_btn_post">
+            <ul>
+                <li>
+                    <button name="edit" type="submit"><i></i>&nbsp; Save</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</form>
+<script>
+        $(document).ready(function () {
+            $('.datepick').datetimepicker({
+                format: 'YYYY-MM-DD ',
+                ignoreReadonly: true
+            });
+        });
+            </script>

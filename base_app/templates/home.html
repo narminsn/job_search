@@ -1,0 +1,622 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block page %}
+    {% load static %}
+
+
+    {% if not request.user.is_authenticated %}
+        <!-- jp ragister Wrapper Start -->
+        <div class="jp_register_section_main_wrapper">
+            <div class="jp_regis_left_side_box_wrapper">
+                <div class="jp_regis_left_side_box">
+                    <img src="{% static 'mysite/images/content/regis_icon.png' %}" alt="icon"/>
+                    <h4>I’m a COMPANY</h4>
+                    <p>Signed in companies are able to post new<br> job offers, searching for candidate...</p>
+                    <ul>
+                        <li><a id="company" data-toggle="modal" data-target="#myModal" href="#"><i
+                                class="fa fa-plus-circle"></i> &nbsp;REGISTER AS COMPANY</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="background-image: url('{% static 'mysite/images/content/car_img1.jpg' %}')" class="jp_regis_right_side_box_wrapper">
+                <div class="jp_regis_right_img_overlay"></div>
+                <div class="jp_regis_right_side_box">
+                    <img src="{% static 'mysite/images/content/regis_icon2.png' %}" alt="icon"/>
+                    <h4>I’m an candidate</h4>
+                    <p>Signed in companies are able to post new<br> job offers, searching for candidate...</p>
+                    <ul>
+                        <li><a id="candidate" href="#" data-toggle="modal" data-target="#myModal"><i
+                                class="fa fa-plus-circle"></i> &nbsp;REGISTER
+                            AS CANDIDATE</a></li>
+                    </ul>
+                </div>
+                <div class="jp_regis_center_tag_wrapper">
+                    <p>OR</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- jp ragister Wrapper End -->
+    {% endif %}
+    <!-- jp popular Categories Wrapper Start -->
+    <div class="jp_popular_category_main_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_popu_cate_heading_wrapper">
+                        <h4>Popular Categories</h4>
+                    </div>
+                </div>
+                {% for field in categories %}
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div style="    margin-top: 30px;"
+                             class="jp_popu_cate_box_main_wrapper jp_popu_cate_box_main_wrapper_second">
+                            <div id="{{ field.id }}" class="jp_top_jobs_category_wrapper parentt">
+                                <div class="jp_top_jobs_category">
+                                    <i class="fa fa-code"></i>
+                                    {% if request.user.is_authenticated %}
+                                        <h3><a class="{{ field.id }}" href="{% url 'jobs' %}">{{ field.name }}</a></h3>
+
+                                    {% else %}
+                                        <h3><a class="category" href="#">{{ field.name }}</a></h3>
+
+                                    {% endif %}
+                                    <p>(240 jobs)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- jp popular Categories Wrapper End -->
+
+    <!-- jp recent jobs Wrapper Start -->
+{% if not request.user.is_authenticated %}
+    <div class="jp_recent_job_main_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="cc_featured_product_main_wrapper">
+                    <div class="jp_hiring_heading_wrapper jp_job_post_heading_wrapper">
+                        <h2>Recent Jobs</h2>
+                    </div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        {#                            <li role="presentation" class="active"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Featured</a></li>#}
+                        {#                            <li role="presentation"><a href="#hot" aria-controls="hot" role="tab" data-toggle="tab">Remotely</a></li>#}
+                        {#                            <li role="presentation"><a href="#trand" aria-controls="trand" role="tab" data-toggle="tab">Part Time</a></li>#}
+                        {#                            <li role="presentation"><a href="#best" aria-controls="best" role="tab" data-toggle="tab">Full Time </a></li>#}
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="best">
+                        <div class="ss_featured_products">
+                            {#                                class="owl-carousel owl-theme"#}
+                            <div>
+                                <div class="item" data-hash="zero">
+                                    <div class="row">
+                                        {% for field in  posts %}
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div style="height: 314px;" class="jp_job_post_main_wrapper_cont">
+                                                    <div class="jp_job_post_main_wrapper">
+                                                        <div class="row">
+
+{#                                                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">#}
+{#                                                                    <div class="jp_job_post_side_img">#}
+{#                                                                        <img src="{{ field.image }}" alt="post_img"/>#}
+{#                                                                    </div>#}
+{#                                                                    <div class="jp_job_post_right_cont">#}
+{#                                                                        <h4>{{ field.job_title }}</h4>#}
+{#                                                                        <p>{{ field.name.company_name }}</p>#}
+{#                                                                        <ul>#}
+{#                                                                            <li>#}
+{#                                                                                <i class="fa fa-cc-paypal"></i>&nbsp; {{ field.min_salary }}-{{ field.max_salary }}#}
+{#                                                                            </li>#}
+{#                                                                            <li><i class="fa fa-map-marker"></i>&nbsp;#}
+{#                                                                                {{ field.country }}, {{ field.city }}#}
+{#                                                                            </li>#}
+{#                                                                        </ul>#}
+{#                                                                    </div>#}
+{#                                                                </div>#}
+{#                                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">#}
+{#                                                                    <div class="jp_job_post_right_btn_wrapper">#}
+{#                                                                        <ul>#}
+{##}
+{#                                                                            <li><a data_id="{{ field.id }}"#}
+{#                                                                           class="like"><i#}
+{#                                                                            class="fa fa-heart-o"></i></a></li>#}
+{#                                                                             <li><a href="#">Part Time</a></li>#}
+{#                                                                            #}
+{#                                                                            <li>#}
+{#                                                                                {% if field in applies %}#}
+{#                                                                                    <a style="background-color: #50c0ea;" class="apply"#}
+{#                                                                                id="{{ field.id }}">Applied</a>#}
+{#                                                                        #}
+{#                                                                    {% else %}#}
+{#                                                                         <a  class="apply"#}
+{#                                                                                id="{{ field.id }}">Applied</a>#}
+{#                                                                    {% endif %}#}
+{#                                                                                #}
+{#                                                                                #}
+{#                                                                                </li>#}
+{##}
+{##}
+{#                                                                        </ul>#}
+{#                                                                    </div>#}
+{#                                                                </div>#}
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="jp_job_post_side_img">
+                                                                        <img src="{{ field.image }}" alt="post_img"/>
+                                                                    </div>
+                                                                    <div class="jp_job_post_right_cont">
+                                                                        <h4><a class="onepost" style="color: white;"
+                                                                               href="#">{{ field.job_title }}</a></h4>
+                                                                        <p>{{ field.name.company_name }}</p>
+                                                                        <ul>
+                                                                            <li>
+                                                                                <i class="fa fa-cc-paypal"></i>&nbsp; {{ field.min_salary }}-{{ field.max_salary }}
+                                                                            </li>
+                                                                            <li><i class="fa fa-map-marker"></i>&nbsp;
+                                                                                {{ field.country }}, {{ field.city }}
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="jp_job_post_keyword_wrapper">
+                                                        <ul>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video_nav_img_wrapper">
+                            <div class="video_nav_img">
+                                <ul>
+                                    {#                                        <li><a class="button secondary url owl_nav" href="#zero">1</a></li>#}
+                                    {#                                        <li><a class="button secondary url owl_nav" href="#one">2</a></li>#}
+                                    {#                                        <li><a class="button secondary url owl_nav active" href="#two">3</a></li>#}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jp recent jobs Wrapper End -->
+ {% endif %}
+    <!-- jp Hiring company Wrapper Start -->
+    <div class="jp_hiring_com_slider_main_wrapper">
+        <div class="jp_hiring_img_overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_hiring_slider_main_wrapper">
+                        <div class="jp_hiring_slider_heading_wrapper">
+                            <h2>Top Hiring Companies</h2>
+                        </div>
+                        <div class="jp_hiring_slider_wrapper">
+                            {#                        class="owl-carousel owl-theme"#}
+                            <div>
+                                <div class="item">
+                                    <div class="row">
+                                        {% for field in comps %}
+                                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 hidden-sm hidden-xs">
+                                                <div class="jp_hiring_content_main_wrapper">
+                                                    <div class="jp_hiring_content_wrapper">
+                                                        <img src="{% static 'mysite/images/content/hiring_img3.png' %}"
+                                                             alt="hiring_img"/>
+                                                        <h4><a style="color: white;" class="onecomp"
+                                                               {% if request.user.is_authenticated %}
+                                                               href="{% url 'candidate-profile' field.slug %}"
+                                                        {% else %}
+                                                                href="#"
+                                                               {% endif %}
+                                                        >{{ field.company_name }}</a></h4>
+                                                        <p>{{ field.country }}, {{ field.city }}</p>
+                                                        <ul>
+                                                            {#                                                            <li><a href="#">4 Opening</a></li>#}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        {% endfor %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jp Hiring company Wrapper End -->
+
+
+{% endblock %}
+
+
+
+{% block modal %}
+    <div id="myModal" role="dialog" class="register_section modal fade">
+        <!-- register_form_wrapper -->
+        <div class="register_tab_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div role="tabpanel">
+
+                            <!-- Nav tabs -->
+                            <ul style="background-color: #1a1e27;" id="tabOne" class="nav register-tabs">
+                                <li class="active"><a href="#contentOne-1" data-toggle="tab">personal account <br>
+                                    <span>i am looking for a job</span></a>
+                                </li>
+                                <li><a href="#contentOne-2" data-toggle="tab">company account <br> <span>We are hiring Employees</span></a>
+                                </li>
+
+                                <li style="float: right;">
+                                    <button style="background-color: #1a1e27;border-color: #1a1e27;
+    font-size: 51px;" data-dismiss="modal">&times;
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active register_left_form" id="contentOne-1">
+
+                                    <div class="jp_regiter_top_heading">
+                                        <p>Fields with * are mandetory </p>
+                                    </div>
+
+                                    <form method="POST">
+                                        {% csrf_token %}
+
+                                        <div class="row clearfix">
+                                            <!--Form Group-->
+
+
+                                            {% for field in candidate %}
+                                                <!--Form Group-->
+                                                {% if field.label == 'City post' %}
+                                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                        <select name="city" id="city">
+
+                                                            <option value="">Choose City</option>
+                                                        </select>
+                                                    </div>
+                                                {% elif field.label == 'Country' %}
+                                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                        {% render_field field placeholder=field.label id='country' %}
+
+                                                    </div>
+                                                {% else %}
+                                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                        {% render_field field class="form-control input-lg" placeholder=field.label %}
+                                                        {#                                                                                                    <input type="text" name="field-name" value="" placeholder="Email*">#}
+                                                        {% if field.errors %}
+                                                            {% for msg in field.errors %}
+                                                                <span style="color: white;"
+                                                                      class="text-danger">{{ msg }}</span>
+                                                            {% endfor %}
+                                                        {% endif %}
+
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </div>
+
+                                        <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
+                                            <button style="border: none;" name='candidate'
+                                                    class="btn btn-primary login_btn">
+                                                register
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <div class="login_message">
+                                        <p>Already a member? <a href="#"> Login Here </a></p>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade register_left_form" id="contentOne-2">
+
+                                    <div class="jp_regiter_top_heading">
+                                        <p>Fields with * are mandetory </p>
+                                    </div>
+                                    <form method="POST">
+                                        {% csrf_token %}
+
+                                        <div class="row clearfix">
+                                            <!--Form Group-->
+
+
+                                            {% for field in company %}
+                                                <!--Form Group-->
+                                                {% if field.label == 'City post' %}
+                                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                        <select name="city" id="city2">
+
+                                                            <option value="">Choose City</option>
+                                                        </select>
+                                                    </div>
+                                                {% elif field.label == 'Country' %}
+                                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                        {% render_field field placeholder=field.label id='country2' %}
+
+                                                    </div>
+                                                {% else %}
+                                                    <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                        {% render_field field class="form-control input-lg" placeholder=field.label %}
+                                                        {#                                                                                                    <input type="text" name="field-name" value="" placeholder="Email*">#}
+                                                        {% if field.errors %}
+                                                            {% for msg in field.errors %}
+                                                                <span style="color: white;"
+                                                                      class="text-danger">{{ msg }}</span>
+                                                            {% endfor %}
+                                                        {% endif %}
+
+                                                    </div>
+                                                {% endif %}
+
+                                            {% endfor %}
+
+                                        </div>
+
+                                        <div class="login_btn_wrapper register_btn_wrapper login_wrapper ">
+                                            <button style="    border: none;" name='company'
+                                                    class="btn btn-primary login_btn">
+                                                register
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <div class="login_message">
+                                        <p>Already a member? <a data-dismiss="modal" data-toggle="modal"
+                                                                data-target="#loginModal" href=""> Login Here </a></p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="loginModal" role="dialog" class="register_section modal fade">
+        <!-- jp login wrapper start -->
+        <div class="login_section">
+            <!-- login_form_wrapper -->
+            <div class="login_form_wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <!-- login_wrapper -->
+                            <div class="login_wrapper">
+                                <button style="position: relative;left: 665px; bottom: 46px;background-color: #1a1e27;
+    font-size: 29px;border: none;" data-dismiss="modal">x
+                                </button>
+
+                                <h2>LOGIN</h2>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in loginform %}
+                                        <div class="formsix-pos">
+                                            <div class="form-group ">
+                                                {% render_field field class="form-control input-lg" placeholder=field.label %}
+                                            </div>
+                                        </div>
+
+                                    {% endfor %}
+
+                                    <div class="login_remember_box">
+                                        {#                                        <label class="control control--checkbox">Remember me#}
+                                        {#                                            <input type="checkbox">#}
+                                        {#                                            <span class="control__indicator"></span>#}
+                                        {#                                        </label>#}
+                                        {#                                        <a href="#" class="forget_password">#}
+                                        {#                                            Forgot Password#}
+                                        {#                                        </a>#}
+                                    </div>
+                                    <div class="login_btn_wrapper">
+                                        <button style="    border: none;" type="submit"
+                                                class="btn btn-primary login_btn"> Login
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="login_message">
+                                    <p>Don’t have an account ? <a href="" data-dismiss="modal" data-toggle="modal"
+                                                                  data-target="#myModal"> Register Now </a></p>
+                                </div>
+                            </div>
+                            <p>In case you are using a public/shared computer we recommend that
+                                you logout to prevent any un-authorized access to your account</p>
+                            <!-- /.login_wrapper-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.login_form_wrapper-->
+        </div>
+        <!-- jp login wrapper end -->
+    </div>
+
+
+{% endblock %}
+{% block js %}
+    <script>
+        function snackbar(text) {
+            var x = document.getElementById("snackbar");
+            x.innerHTML = text;
+            x.className = "show";
+            setTimeout(function () {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+        }
+        {% if messages %}
+            {% for msg in messages %}
+                snackbar("{{ msg }}");
+            {% endfor %}
+        {% endif %}
+
+        function city() {
+            var num = $('#country').val()
+            console.log(num)
+            var country = $(`[value=${num}]`).text()
+            console.log(country)
+            $.ajax({
+                method: "POST",
+                data: {
+                    country: num,
+                    csrfmiddlewaretoken: "{{ csrf_token }}"
+                },
+                success: function (data) {
+                    console.log(data)
+                    console.log(data.data.length)
+                    $('#city').html('<option>Choose city</option>')
+                    for (var i = 0; i < data.data.length; i++) {
+                        console.log(i);
+
+                        $('#city').append(`<option value=${data.data[i].id}>${data.data[i].name}</option>`)
+
+                    }
+
+                },
+
+                error: function (xhr, err, msg) {
+                    console.log(xhr, err, msg);
+                }
+            });
+        }
+
+        function city2() {
+            var num = $('#country2').val()
+            console.log(num)
+            var country = $(`[value=${num}]`).text()
+            console.log(country)
+            $.ajax({
+                method: "POST",
+                data: {
+                    country: num,
+                    csrfmiddlewaretoken: "{{ csrf_token }}"
+                },
+                success: function (data) {
+                    console.log(data)
+                    console.log(data.data.length)
+                    $('#city').html('<option>Choose city</option>')
+                    for (var i = 0; i < data.data.length; i++) {
+                        console.log(i);
+
+                        $('#city2').append(`<option value=${data.data[i].id}>${data.data[i].name}</option>`)
+
+                    }
+
+                },
+
+                error: function (xhr, err, msg) {
+                    console.log(xhr, err, msg);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+
+            $("#company").click(function () {
+                console.log('com')
+                $("a[data-toggle=tab]:last").click();
+            });
+
+            $('#country').on('change', function () {
+                console.log('sdf')
+                city()
+            });
+            $('#country2').on('change', function () {
+                city2()
+            });
+
+            $("#candidate").click(function () {
+                console.log('com')
+                $("a[data-toggle=tab]:first").click();
+            })
+
+            $('.parentt').click(function () {
+                var id = $(this).attr('id');
+                console.log('aaaaaaaaaa')
+                $(`a.${id}`)[0].click();
+            })
+
+            {% if not request.user.is_authenticated %}
+                $('.parentt').click(function () {
+                    var id = $(this).attr('id');
+                    console.log('aaaaaaaaaa')
+                    $('a.LOGIN').click()
+                })
+                $('a.onepost').click(function () {
+                    console.log('onepost')
+                    $('a.LOGIN').click()
+                })
+                $('a.onecomp').click(function () {
+                    console.log('onepost')
+                    $('a.LOGIN').click()
+                })
+                $('a.category').click(function () {
+                    console.log('onepost')
+                    $('a.LOGIN').click()
+                })
+            {% endif %}
+
+
+            console.log('sdf');
+            console.log($("a[data-toggle=tab]:last"))
+            {% if candidate.errors %}
+                console.log('ERORR')
+                document.getElementById('company').click()
+            {% elif company.errors %}
+                document.getElementById('company').click()
+                $("a[data-toggle=tab]:last").click();
+                $(".register_left_form:first").hide();
+                $(".register_left_form:last").addClass("active in");
+                $("a[data-toggle=tab]:first").click(function () {
+                    $(".register_left_form:first").show();
+                });
+            {% endif %}
+        });
+        {#        {% if company.errors %}#}
+        {#                        console.log('ERRORRRR')#}
+        {#            document.getElementById('company').click()#}
+        {#                            $("a[data-toggle=tab]:last").click();#}
+        {#                            $(".register_left_form:first").hide();#}
+        {#                            $(".register_left_form:last").addClass("active in");#}
+        {#                            $("a[data-toggle=tab]:first").click(function () {#}
+        {#                                $(".register_left_form:first").show();#}
+        {#                            });#}
+        {##}
+        {#                        {% elif candidate.errors %}#}
+        {#                        $('#company').click()#}
+        {#                        });#}
+        {#                    {% endif %}#}
+
+
+    </script>
+{% endblock %}

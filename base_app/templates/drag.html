@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+    <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+  <div class="row my-4">
+    <div class="col">
+      <div class="jumbotron">
+        <h1>DropzoneJS plugin for Bootstrap 4 - Advanced Components with daemonite material UI (WIP)</h1>
+        <p class="lead">by djibe.</p>
+        <p class="text-muted">(thx to BS4 + Daemonite Material Design)</p>
+        <p>
+          Dropzone is an easy to use drag'n'drop library. It supports image previews and shows nice progress bars,<br>a creation of
+          <a href="https://github.com/enyo/dropzone/" target="_blank">enyo</a>.<br>
+        </p>
+        <p class="lead">
+          If you see this page unstyled, press Ctrl + F5 to reload it.
+        </p>
+        <h2>Setup</h2>
+        <ol>
+          <li>
+            Add <code>
+              &lt;link rel="stylesheet" href="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.css"&gt;
+            </code> before your bootstrap css.
+          </li>
+          <li>Add dropzone.js to your page AFTER bootstrap.min.js<br>
+            <code>&lt;script src="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.js">&lt;/script></code>
+          </li>
+          <li>
+            DropzoneJS won't do any server-side file processing, you still have to do it on your own.
+          </li>
+          <li>
+            Read the full documentation here : <a href="http://www.dropzonejs.com/#installation" target="_blank">http://www.dropzonejs.com/#installation</a>
+          </li>
+        </ol>
+        <h2>Demo</h2>
+        <p>
+        You already know the standard Bootstrap file upload form
+        </p>
+        <div class="custom-file">
+  <input type="file" class="custom-file-input" id="customFile">
+  <label class="custom-file-label" for="customFile">Choose file</label>
+</div>
+<p class="mt-5">
+And here is your new drag n drop element
+</p>
+        <form action="/file-upload" class="dropzone dz-clickable" id="my-dropzone">
+          <div class="dz-message d-flex flex-column">
+            <i class="material-icons text-muted">cloud_upload</i>
+            Drag &amp; Drop here or click
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'mysite/js/bootstrap.js' %}"></script>
+
+<script src="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+
+</body>
+</html>
+
+<style>
+    /* Just add this CSS to your project */
+
+.dropzone {
+  border: 2px dashed #dedede;
+  border-radius: 5px;
+  background: #f5f5f5;
+}
+
+.dropzone i{
+  font-size: 5rem;
+}
+
+.dropzone .dz-message {
+  color: rgba(0,0,0,.54);
+  font-weight: 500;
+  font-size: initial;
+  text-transform: uppercase;
+}
+
+</style>
+<script>
+    $(document).ready(function() {
+        $(function () {
+            $("#my-dropzone").dropzone({
+                //url: "/file/post", // If not using a form element
+            });
+
+        });
+    });
+
+</script>

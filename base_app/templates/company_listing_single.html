@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% block page %}
+      <!-- Profile head -->
+    <div style="background: #0f1527;
+    " class="profile-head">
+        <div class="container">
+            <a ><img style="width:200px; height:160px;" src="{{ user.get_image }}" alt="avatar"></a>
+            <h5 style="margin-top: 19px;"><a href="#">{{ user.username }}</a></h5>
+            <p><i class="fa fa-map-marker"></i> {{ user.country }}, {{ user.city }}</p>
+            <p class="lead">{{ about.headline }}</p>
+            {#            <p>Phasellus in ipsum vestibulum, maximus mauris a, venenatis quam. Vestibulum nec mi malesuada.</p>#}
+
+            <div class="row bottom-bar">
+
+
+                <ul class="col-sm-12 col-md-6 tab-list">
+                    <li class="hidden-xs" ><a href="user-profile.html"><i>POSTS</i><span></span></a></li>
+                    {#                    {% if request.user.check == 'CAN' %}#}
+                    <li class="active" >
+
+                        <a
+                                href="{% url 'profile_about' user.slug %}"><i>ABOUT</i><span></span></a></li>
+
+
+                    {#                    <li><a href="user-followers.html"><i>Followers</i><span>2.3K</span></a></li>#}
+                    {#                    <li><a href="user-followers-2.html"><i>Following</i><span>279</span></a></li>#}
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- END Profile head -->
+
+    <!-- jp listing Single cont Wrapper Start -->
+    <div class="jp_listing_single_main_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="jp_listing_left_sidebar_wrapper">
+                        <div class="jp_job_des">
+                            <h2>Company Description</h2>
+                            <p>Google is and always will be an engineering company. We hire people with a broad set of
+                                ical skills who are ready to tackle some of technology's greatest challenges and make an
+                                impact on millions, if not billions, of users.
+                                At Google, engineers not only revolutionize search, they routinely work on massive
+                                scalability and storage solutions, large-scale applications and rely new platforms for
+                                developers around the world. From AdWords to Chrome,
+                                Android to Ye, Social to Local, Google engineers are changing the world.</p>
+                            <ul>
+{#                                <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="#">www.example.com</a></li>#}
+{#                                <li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="#">Download Info</a></li>#}
+
+                            </ul>
+                        </div>
+                        <div class="jp_job_res">
+                            <h2>Responsibilities</h2>
+                            <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit aliquet
+                                elit, eget tincidunt nibh pulvinar a. Praesent sapien massa, convallis a pellentesque
+                                nec, egestas non nisi. Curabitur aliquet quam id
+                                dui posuere blandit.</p>
+                            <ul>
+                                <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Build next-generation web applications
+                                    with a focus on the client side.
+                                </li>
+                                <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Redesign UI's, implement new UI's, and
+                                    pick up Java as necessary.
+                                </li>
+                                <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Explore and design dynamic and
+                                    compelling consumer experiences.
+                                </li>
+                                <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Design and build scalable framework
+                                    for web applications.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="jp_job_res jp_job_qua">
+                            <h2>Minimum qualifications</h2>
+                            <ul>
+                                <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; BA/BS degree in a technical field or
+                                    equivalent practical experience.
+                                </li>
+                                <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; 2 years of relevant work experience in
+                                    software development.
+                                </li>
+                                <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Programming experience in C, C++ or
+                                    Java.
+                                </li>
+                                <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Experience with AJAX, HTML and CSS.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="jp_job_Follow">
+                            <h2>How To Follow</h2>
+                            <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur aliquet
+                                quam id dui posuere blandit. Curabitur aliquet quam id dui posuere blandit. Curabitur
+                                non nulla sit amet nisl tempus convallis quis ac
+                                lectus.</p>
+                        </div>
+                        <div class="jp_job_map">
+                            <h2>Loacation</h2>
+                            <div class="mapouter">
+                                <div class="gmap_canvas">
+                                    <iframe width="600" height="500" id="gmap_canvas"
+                                            src="https://maps.google.com/maps?q=COMPAREX%20Belgium&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                    <a href="https://www.embedgooglemap.net/blog/nordvpn-coupon-code/">embedgooglemap.net</a>
+                                </div>
+                                <style>.mapouter {
+                                    position: relative;
+                                    text-align: right;
+                                    height: 500px;
+                                    width: 600px;
+                                }
+
+                                .gmap_canvas {
+                                    overflow: hidden;
+                                    background: none !important;
+                                    height: 500px;
+                                    width: 600px;
+                                }</style>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="jp_rightside_job_categories_wrapper jp_rightside_listing_single_wrapper">
+                                <div class="jp_rightside_job_categories_heading">
+                                    <h4>Company Overview</h4>
+                                </div>
+                                <div class="jp_jop_overview_img_wrapper">
+{#                                    <div class="jp_jop_overview_img">#}
+{#                                        <img src="{{ user.get_image }}" alt="post_img"/>#}
+{#                                    </div>#}
+                                </div>
+                                <div class="jp_job_listing_single_post_right_cont">
+                                    <div class="jp_job_listing_single_post_right_cont_wrapper">
+                                        <h4>Webstrot Technology</h4>
+                                        <p>{{ user.headline }}</p>
+                                    </div>
+                                </div>
+                                <div class="jp_job_post_right_overview_btn_wrapper">
+                                    <div class="jp_job_post_right_overview_btn">
+                                        <ul>
+                                            <li><a href="{% url 'candidate-profile' user.slug %}">{{ job_count }} Jobs</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="jp_listing_overview_list_outside_main_wrapper">
+                                    <div class="jp_listing_overview_list_main_wrapper">
+                                        <div class="jp_listing_list_icon">
+                                            <i class="fa fa-map-marker"></i>
+                                        </div>
+                                        <div class="jp_listing_list_icon_cont_wrapper">
+                                            <ul>
+                                                <li>Location:</li>
+                                                <li>{{ user.country }}, {{ user.city }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                        <div class="jp_listing_list_icon">
+                                            <i class="fa fa-info-circle"></i>
+                                        </div>
+                                        <div class="jp_listing_list_icon_cont_wrapper">
+                                            <ul>
+                                                <li>Job Open:</li>
+                                                <li>{{ job_count }} Jobs</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                        <div class="jp_listing_list_icon">
+                                            <i class="fa fa-th-large"></i>
+                                        </div>
+                                        <div class="jp_listing_list_icon_cont_wrapper">
+                                            <ul>
+                                                <li>Category:</li>
+                                                <li>{{ about.category }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                        <div class="jp_listing_list_icon">
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="jp_listing_list_icon_cont_wrapper">
+                                            <ul>
+                                                <li>Experience:</li>
+                                                <li>{{ about.experience }}  Experience</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="jp_listing_right_bar_btn_wrapper">
+                                        <div class="jp_listing_right_bar_btn">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jp listing Single cont Wrapper End -->
+{% endblock %}
+
+{% block js %}
+    <script>
+    function initMap() {
+        var uluru = {lat: -36.742775, lng: 174.731559};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            scrollwheel: false,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmdG8C6ItElq5ipuFv6O9AE48wyZm_vqU&amp;callback=initMap">
+</script>
+{% endblock %}
+

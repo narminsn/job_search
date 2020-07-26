@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+
+
+</head>
+
+<body>
+
+  <!-- Start your project here-->
+{#<div class="row">#}
+{#  <div class="col-md-12">#}
+{##}
+{#    <select class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">#}
+{#      <option value="" disabled selected>Choose your country</option>#}
+{#      <option value="1">USA</option>#}
+{#      <option value="2">Germany</option>#}
+{#      <option value="3">France</option>#}
+{#      <option value="4">Poland</option>#}
+{#      <option value="5">Japan</option>#}
+{#    </select>#}
+{#    <label class="mdb-main-label">Label example</label>#}
+{#    <button class="btn-save btn btn-primary btn-sm">Save</button>#}
+{##}
+{#  </div>#}
+{#</div>#}
+
+  <select class="selectpicker" multiple data-live-search="true">
+  <option>Mustard</option>
+  <option>Ketchup</option>
+  <option>Relish</option>
+</select>
+  <!-- Start your project here-->
+
+</body>
+<script>
+    $(document).ready(function() {
+        $('select').selectpicker();
+$('.mdb-select').materialSelect();
+});
+</script>
+
+</html>

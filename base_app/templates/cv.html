@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block page %}
+{#    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700" rel="stylesheet">#}
+{#    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">#}
+{#    <link rel="stylesheet" href="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.css">#}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"#}
+{#          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+
+ <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script language="javascript" src="https://momentjs.com/downloads/moment.js"></script>
+    <script language="javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
+
+    <main style="background: #13171e;">
+
+        <!-- Page links -->
+        <div style="background: #13171e; border:none;" class="page-links">
+            <div class="container">
+                <div class="pull-left">
+                    <ul class="link-list">
+                        <li><a  href="{% url 'settings_candidate'  %}">Profile</a></li>
+                        <li><a style="color: #3ba6e6;" class="active" href="{% url 'can_cv'  %}">Curriculum vitae base info</a></li>
+                        <li><a href="{% url 'education-settings'   %}">Education and Experience</a></li>
+                        <li><a href="{% url 'settings-skil'  %}">Skills</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- END Page links -->
+        <section style="background: #13171e;" class="no-border-bottom section-sm">
+            <div class="container">
+                <header class="section-header">
+                    <h3 style="color: white;">Profile settings</h3>
+                    <p>Change your name, avatar, location, description, etc.</p>
+                </header>
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+                        <div class="row">
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% for field in forms %}
+
+                                    {% if field.label == 'Document' %}
+                                        <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+
+                                            <div style="top: 26px;" class="custom-file">
+                                                {% render_field field placeholder=field.label class="custom-file-input" id="customFile" %}
+
+
+                                                <label style=" border:none;   background: #1a1e27;"
+                                                       class="custom-file-label"
+                                                       for="customFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                    {% elif field.label == 'Image post' %}
+                                        <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+
+                                            <div style="top: 26px;" class="custom-file">
+                                                {% render_field field placeholder=field.label class="custom-file-input" id="customFile" %}
+
+
+                                                <label style=" border:none;   background: #1a1e27;"
+                                                       class="custom-file-label"
+                                                       for="customFile">Choose file</label>
+                                            </div>
+                                        </div>
+
+                                    {% elif field.label == 'About' %}
+
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="jp_adp_textarea_main_wrapper">
+                                                {% render_field field placeholder=field.label rows='7' %}
+
+                                            </div>
+                                        </div>
+                                    {% elif field.label == 'Job description' %}
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="jp_adp_textarea_main_wrapper">
+                                                {% render_field field placeholder=field.label rows='7' %}
+                                            </div>
+                                        </div>
+
+                                    {% elif field.label == 'Country' %}
+                                        <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                            <div class="jp_adp_form_wrapper">
+                                                {% render_field field placeholder=field.label id='country' %}
+
+                                            </div>
+                                        </div>
+                                    {% elif field.label == 'Birthday' %}
+                                        <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                         <div class="jp_adp_form_wrapper">
+                                        <div class="form-group required">
+                                            <div class="input-group datepick">
+                                                {% render_field field class="form-control date2" name="date2" id="frmSaveOffice_startdt" placeholder=field.label style="background: #1a1e27;border:none;" %}
+
+                                                {#                                                    <input value="{{ context.time.end_time }}" type="text"#}
+                                                {#                                                    class="form-control date2"#}
+                                                {#                                                    name="date2"#}
+                                                {#                                                    id="frmSaveOffice_startdt"#}
+                                                {#                                                    required readonly>#}
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         </div>
+                                        </div>
+
+                                    {% elif field.label == 'City post' %}
+                                        <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                            <div class="jp_adp_form_wrapper">
+                                                <select name="city" id="city">
+                                                    {#                                                    {% if cities %}#}
+
+                                                    {#                                                    #}
+                                                    {##}
+                                                    {#                                                    {% endif %}#}
+                                                    {% if CV.city %}
+                                                        <option value="{{ CV.city.id }}">{{ CV.city }}</option>
+
+                                                        {% for field in cities %}
+                                                            <option value="{{ field.id }}">{{ field.name }}</option>
+                                                        {% endfor %}
+                                                    {% else %}
+
+                                                        <option value="">Choose City</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                            <div class="jp_adp_form_wrapper">
+                                                {% render_field field placeholder=field.label %}
+
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% if field.errors %}
+                                        {{ field.errors }}
+                                    {% endif %}
+                                {% endfor %}
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="jp_adp_choose_resume_bottom_btn_post">
+                                        <ul>
+                                            <li>
+                                                <button style="border: 1px solid #3ba6e6;
+    background: #3ba6e6;" type="submit"><i></i>&nbsp; Save</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </section>
+
+    </main>
+{#    <script src="{% static 'mysite/js/app.min.js' %}"></script>#}
+
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        document.getElementsByTagName('select')[0].firstElementChild.innerText = 'Country'
+        document.getElementsByTagName('select')[1].firstElementChild.innerText = 'City'
+        document.getElementsByTagName('select')[2].firstElementChild.innerText = 'Category'
+
+        function city() {
+            var num = $('#country').val()
+            var country = $(`[value=${num}]`).text()
+
+            $.ajax({
+                method: "POST",
+                data: {
+                    country: country,
+                    csrfmiddlewaretoken: "{{ csrf_token }}"
+                },
+                success: function (data) {
+                    console.log(data)
+                    console.log(data.data.length)
+                    $('#city').html('<option>Choose city</option>')
+                    for (var i = 0; i < data.data.length; i++) {
+                        console.log(i);
+
+                        $('#city').append(`<option value=${data.data[i].id}>${data.data[i].name}</option>`)
+
+                    }
+
+                },
+
+                error: function (xhr, err, msg) {
+                    console.log(xhr, err, msg);
+                }
+            });
+        }
+        {% if not CV.city %}
+            city()
+        {% endif %}
+        $(document).ready(function () {
+            $('.datepick').datetimepicker({
+                format: 'YYYY-MM-DD ',
+                ignoreReadonly: true
+            });
+
+
+            $(function () {
+                $("#my-dropzone").dropzone({
+                    //url: "/file/post", // If not using a form element
+                });
+
+            });
+            $('#customFile').on('change', function () {
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+            });
+
+
+            $('#country').on('change', function () {
+                city()
+
+
+            });
+
+
+        });
+
+
+    </script>
+
+
+{% endblock %}
+
+
+{% block css %}
+    <style>
+        /* Just add this CSS to your project */
+        body, html {
+            font-family: 'Lato', sans-serif;
+            font-size: 16px;
+            line-height: 23px;
+            color: #6f7e98;
+            background: #1a1e27;
+            overflow-x: hidden;
+        }
+
+        .dropzone {
+            border: 2px dashed #dedede;
+            border-radius: 5px;
+            background: #f5f5f5;
+        }
+
+        .custom-file-input:lang(en) ~ .custom-file-label::after {
+            content: "Browse";
+            background: #1a1e27;
+            color: white;
+        }
+
+
+        .dropzone i {
+            font-size: 5rem;
+        }
+
+        .dropzone .dz-message {
+            color: rgba(0, 0, 0, .54);
+            font-weight: 500;
+            font-size: initial;
+            text-transform: uppercase;
+        }
+
+    </style>
+{% endblock %}

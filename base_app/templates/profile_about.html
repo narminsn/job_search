@@ -1,0 +1,555 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page %}
+
+
+    <!-- Profile head -->
+    <div style="background: #0f1527;
+    " class="profile-head">
+        <div class="container">
+            <a><img style="width:200px; height:160px;" src="{{ userr.get_image }}" alt="avatar"></a>
+            <h5 style="margin-top: 19px;"><a href="#">{{ userr.username }}</a></h5>
+            <p><i class="fa fa-map-marker"></i> {{ userr.location }}</p>
+            <p class="lead">{{ about.headline }}</p>
+            {#            <p>Phasellus in ipsum vestibulum, maximus mauris a, venenatis quam. Vestibulum nec mi malesuada.</p>#}
+
+            <div class="row bottom-bar">
+
+
+                <ul class="col-sm-12 col-md-6 tab-list">
+                    <li class="hidden-xs"><a
+                            href="{% url 'candidate-profile' userr.slug %}"><i>POSTS</i><span></span></a></li>
+                    <li class="active"><a href="user-profile.html"><i>ABOUT</i><span></span></a></li>
+                    {#                    <li><a href="user-followers.html"><i>Followers</i><span>2.3K</span></a></li>#}
+                    {#                    <li><a href="user-followers-2.html"><i>Following</i><span>279</span></a></li>#}
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- END Profile head -->
+
+
+
+
+
+
+    <!-- jp Tittle Wrapper Start -->
+
+    <!-- jp Tittle Wrapper End -->
+    {% if userr.check == "CAN" %}
+        <!-- jp profile Wrapper Start -->
+        <div style="padding: 0;     margin-bottom: 73px;" class="jp_cp_profile_main_wrapper">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                                <div class="jp_cp_accor_heading_wrapper">
+                                    <h2>HI THERE I'M</h2>
+                                    <p>Proin gravida nibh vel velit quet. Aenean sollicitudin, lorem quis bibendum
+                                        auctor,
+                                        nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet
+                                        nibh vulpuate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec
+                                        tellus a
+                                        odio tincidunt.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-xs-8 col-sm-12">
+                                <div class="accordion_wrapper abt_page_2_wrapper">
+                                    <div class="panel-group" id="accordion_threeLeft">
+
+
+                                        <!-- /.panel-default -->
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading bell">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" data-toggle="collapse"
+                                                       data-parent="#accordion_threeLeft"
+                                                       href="#collapseTwentyLeftThree"
+                                                       aria-expanded="false">
+
+
+                                                        <i class="fa fa-user"></i> PERSONAL INFO
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwentyLeftThree" class="panel-collapse collapse"
+                                                 aria-expanded="false" role="tablist">
+
+                                                <div class="panel-body">
+
+                                                    I'm a Freelance Web Designer & Developer based in Moscow, Russia. I
+                                                    have
+                                                    serious passion for UI effects, animations and creating intuitive,
+                                                    with
+                                                    over a decade of experience.
+                                                    <hr style="    border-top: 1px solid #d7caca73;">
+                                                    <div class="jp_cp_right_side_wrapper">
+                                                        <div class="jp_cp_right_side_inner_wrapper">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <table>
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td class="td-w25">First Name</td>
+                                                                            <td class="td-w10">:</td>
+                                                                            <td class="td-w65">{{ user.first_name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="td-w25">Last Name</td>
+                                                                            <td class="td-w10">:</td>
+                                                                            <td class="td-w65">{{ user.last_name }}</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="td-w25">Date of birth</td>
+                                                                            <td class="td-w10">:</td>
+                                                                            <td class="td-w65">{{ CV.birthday }}
+                                                                            </td>
+                                                                        </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <table>
+                                                                        <tbody>
+
+                                                                        <tr>
+                                                                            <td class="td-w25">Address</td>
+                                                                            <td class="td-w10">:</td>
+                                                                            <td class="td-w65">{{ user.country }}, {{ CV.city }}
+                                                                            </td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td class="td-w25">Phone</td>
+                                                                            <td class="td-w10">:</td>
+                                                                            <td class="td-w65">{{ CV.phone }}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="td-w25">Email</td>
+                                                                            <td class="td-w10">:</td>
+                                                                            <td class="td-w65">{{ user.email }}</td>
+                                                                        </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading bell">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" data-toggle="collapse"
+                                                       data-parent="#accordion_threeLeft"
+                                                       href="#collapseTwentyLeftThree2"
+                                                       aria-expanded="false">
+                                                        <i class="fa fa-briefcase"></i> EXPERIENCE and <i
+                                                            class="fa fa-graduation-cap"></i> EDUCATION
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwentyLeftThree2" class="panel-collapse collapse"
+                                                 aria-expanded="false" role="tablist">
+                                                <div class="panel-body">
+                                                    {% for field in exps %}
+                                                        <div class="resume-content">
+                                                            <h6 class="uppercase">
+                                                                <span>{{ field.exp_type }}- </span>{{ field.name }}</h6>
+                                                            <span class="date"><i
+                                                                    class="fa fa-calendar-o">  2015 - 2018 </i></span>
+                                                            <p>{{ field.description }}</p>
+                                                        </div>
+                                                        <hr style="    border-top: 1px solid #d7caca73;">
+
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading bell">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" data-toggle="collapse"
+                                                       data-parent="#accordion_threeLeft"
+                                                       href="#collapseTwentyLeftThree3"
+                                                       aria-expanded="false">
+                                                        <i class="fa fa-star"></i> SKILLS
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwentyLeftThree3" class="panel-collapse collapse"
+                                                 aria-expanded="false" role="tablist">
+                                                <div class="panel-body">
+                                                    <div class="row">
+                                                        {% for field in skills %}
+                                                            <div class="col-md-6">
+                                                                <!-- Single Skills Starts -->
+                                                                <div class="resume-content">
+                                                                    <h6 class="uppercase">{{ field.name }}</h6>
+                                                                    <p>{{ field.skill_type }}</p>
+                                                                </div>
+                                                                <hr style="    border-top: 1px solid #d7caca73;">
+
+                                                                <!-- Single Skills Ends -->
+
+                                                            </div>
+
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.panel-default -->
+                                    </div>
+                                    <!--end of /.panel-group-->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="jp_rightside_job_categories_wrapper jp_rightside_listing_single_wrapper">
+                                            <div class="jp_rightside_job_categories_heading">
+                                                <h4>Candidate Overview</h4>
+                                            </div>
+                                            <div class="jp_jop_overview_img_wrapper">
+                                                {#                                    <div class="jp_jop_overview_img">#}
+                                                {#                                        <img src="{{ user.get_image }}" alt="post_img"/>#}
+                                                {#                                    </div>#}
+                                            </div>
+                                            <div class="jp_job_listing_single_post_right_cont">
+                                                <div class="jp_job_listing_single_post_right_cont_wrapper">
+                                                    <h4>{{ user.get_full_name }}</h4>
+                                                    <p>{{ CV.headline }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="jp_job_post_right_overview_btn_wrapper">
+                                                <div class="jp_job_post_right_overview_btn">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="{% url 'candidate-profile' user.slug %}">{{ job_count }}
+                                                                Jobs</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="jp_listing_overview_list_outside_main_wrapper">
+                                                <div class="jp_listing_overview_list_main_wrapper">
+                                                    <div class="jp_listing_list_icon">
+                                                        <i class="fa fa-map-marker"></i>
+                                                    </div>
+                                                    <div class="jp_listing_list_icon_cont_wrapper">
+                                                        <ul>
+                                                            <li>Location:</li>
+                                                            <li>{{ user.country }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                                    <div class="jp_listing_list_icon">
+                                                        <i class="fa fa-info-circle"></i>
+                                                    </div>
+                                                    <div class="jp_listing_list_icon_cont_wrapper">
+                                                        <ul>
+                                                            <li>Job Open:</li>
+                                                            <li>{{ job_count }} Jobs</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                                    <div class="jp_listing_list_icon">
+                                                        <i class="fa fa-th-large"></i>
+                                                    </div>
+                                                    <div class="jp_listing_list_icon_cont_wrapper">
+                                                        <ul>
+                                                            <li>Category:</li>
+                                                            <li>{{ CV.category }}</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                                    <div class="jp_listing_list_icon">
+                                                        <i class="fa fa-star"></i>
+                                                    </div>
+                                                    <div class="jp_listing_list_icon_cont_wrapper">
+                                                        <ul>
+                                                            <li>Experience:</li>
+                                                            <li>{{ CV.experience }} Experience</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="jp_listing_right_bar_btn_wrapper">
+                                                    <div class="jp_listing_right_bar_btn">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- jp profile Wrapper End -->
+    {% else %}
+        <!-- jp listing Single cont Wrapper Start -->
+        <div class="jp_listing_single_main_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <div class="jp_listing_left_sidebar_wrapper">
+                            <div class="jp_job_des">
+                                <h2>Company Description</h2>
+                                <p>Google is and always will be an engineering company. We hire people with a broad set
+                                    of
+                                    ical skills who are ready to tackle some of technology's greatest challenges and
+                                    make an
+                                    impact on millions, if not billions, of users.
+                                    At Google, engineers not only revolutionize search, they routinely work on massive
+                                    scalability and storage solutions, large-scale applications and rely new platforms
+                                    for
+                                    developers around the world. From AdWords to Chrome,
+                                    Android to Ye, Social to Local, Google engineers are changing the world.</p>
+                                <ul>
+                                    <li><i class="fa fa-globe"></i>&nbsp;&nbsp; <a href="#">www.example.com</a></li>
+                                    <li><i class="fa fa-file-pdf-o"></i>&nbsp;&nbsp; <a href="#">Download Info</a></li>
+
+                                </ul>
+                            </div>
+                            <div class="jp_job_res">
+                                <h2>Responsibilities</h2>
+                                <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Mauris blandit
+                                    aliquet
+                                    elit, eget tincidunt nibh pulvinar a. Praesent sapien massa, convallis a
+                                    pellentesque
+                                    nec, egestas non nisi. Curabitur aliquet quam id
+                                    dui posuere blandit.</p>
+                                <ul>
+                                    <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Build next-generation web
+                                        applications
+                                        with a focus on the client side.
+                                    </li>
+                                    <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Redesign UI's, implement new UI's,
+                                        and
+                                        pick up Java as necessary.
+                                    </li>
+                                    <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Explore and design dynamic and
+                                        compelling consumer experiences.
+                                    </li>
+                                    <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Design and build scalable
+                                        framework
+                                        for web applications.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="jp_job_res jp_job_qua">
+                                <h2>Minimum qualifications</h2>
+                                <ul>
+                                    <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; BA/BS degree in a technical field
+                                        or
+                                        equivalent practical experience.
+                                    </li>
+                                    <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; 2 years of relevant work
+                                        experience in
+                                        software development.
+                                    </li>
+                                    <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Programming experience in C, C++
+                                        or
+                                        Java.
+                                    </li>
+                                    <li><i class="fa fa-caret-right"></i>&nbsp;&nbsp; Experience with AJAX, HTML and
+                                        CSS.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="jp_job_Follow">
+                                <h2>How To Follow</h2>
+                                <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur
+                                    aliquet
+                                    quam id dui posuere blandit. Curabitur aliquet quam id dui posuere blandit.
+                                    Curabitur
+                                    non nulla sit amet nisl tempus convallis quis ac
+                                    lectus.</p>
+                            </div>
+                            <div class="jp_job_map">
+                                <h2>Loacation</h2>
+                                {#                            <div id="map" style="width:100%; float:left; height:300px;"></div>#}
+                                <div class="mapouter">
+                                    <div class="gmap_canvas">
+                                        <iframe width="600" height="500" id="gmap_canvas"
+                                                src="https://maps.google.com/maps?q=COMPAREX%20Belgium&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                                frameborder="0" scrolling="no" marginheight="0"
+                                                marginwidth="0"></iframe>
+                                        <a href="https://www.embedgooglemap.net/blog/nordvpn-coupon-code/">embedgooglemap.net</a>
+                                    </div>
+                                    <style>.mapouter {
+                                        position: relative;
+                                        text-align: right;
+                                        height: 500px;
+                                        width: 600px;
+                                    }
+
+                                    .gmap_canvas {
+                                        overflow: hidden;
+                                        background: none !important;
+                                        height: 500px;
+                                        width: 600px;
+                                    }</style>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="jp_listing_left_bottom_sidebar_wrapper">
+                            <div class="jp_listing_left_bottom_sidebar_social_wrapper">
+                                <ul class="hidden-xs">
+                                    {#                                <li>SHARE :</li>#}
+                                    {#                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>#}
+                                    {#                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>#}
+                                    {#                                <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>#}
+                                    {#                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>#}
+                                    {#                                <li class="hidden-xs"><a href="#"><i class="fa fa-google-plus"></i></a></li>#}
+                                    {#                                <li class="hidden-xs"><a href="#"><i class="fa fa-vimeo"></i></a></li>#}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="jp_listing_left_bottom_sidebar_key_wrapper">
+                            <ul>
+                                {#                            <li><i class="fa fa-tags"></i>Keywords :</li>#}
+                                {#                            <li><a href="#">ui designer,</a></li>#}
+                                {#                            <li><a href="#">developer,</a></li>#}
+                                {#                            <li><a href="#">senior</a></li>#}
+                                {#                            <li><a href="#">it company,</a></li>#}
+                                {#                            <li><a href="#">design,</a></li>#}
+                                {#                            <li><a href="#">call center</a></li>#}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="jp_rightside_job_categories_wrapper jp_rightside_listing_single_wrapper">
+                                    <div class="jp_rightside_job_categories_heading">
+                                        <h4>Company Overview</h4>
+                                    </div>
+                                    <div class="jp_jop_overview_img_wrapper">
+                                        <div class="jp_jop_overview_img">
+                                            <img src="images/content/web.png" alt="post_img"/>
+                                        </div>
+                                    </div>
+                                    <div class="jp_job_listing_single_post_right_cont">
+                                        <div class="jp_job_listing_single_post_right_cont_wrapper">
+                                            <h4>Webstrot Technology</h4>
+                                            <p>MARKETING JOB</p>
+                                        </div>
+                                    </div>
+                                    <div class="jp_job_post_right_overview_btn_wrapper">
+                                        <div class="jp_job_post_right_overview_btn">
+                                            <ul>
+                                                <li><a href="#">141 Jobs</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="jp_listing_overview_list_outside_main_wrapper">
+                                        <div class="jp_listing_overview_list_main_wrapper">
+                                            <div class="jp_listing_list_icon">
+                                                <i class="fa fa-map-marker"></i>
+                                            </div>
+                                            <div class="jp_listing_list_icon_cont_wrapper">
+                                                <ul>
+                                                    <li>Location:</li>
+                                                    <li>{{ request.user.location }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                            <div class="jp_listing_list_icon">
+                                                <i class="fa fa-info-circle"></i>
+                                            </div>
+                                            <div class="jp_listing_list_icon_cont_wrapper">
+                                                <ul>
+                                                    <li>Job Open:</li>
+                                                    <li>{{ job_count }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                            <div class="jp_listing_list_icon">
+                                                <i class="fa fa-th-large"></i>
+                                            </div>
+                                            <div class="jp_listing_list_icon_cont_wrapper">
+                                                <ul>
+                                                    <li>Category:</li>
+                                                    <li>{{ about.category }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="jp_listing_overview_list_main_wrapper jp_listing_overview_list_main_wrapper2">
+                                            <div class="jp_listing_list_icon">
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="jp_listing_list_icon_cont_wrapper">
+                                                <ul>
+                                                    <li>Experience:</li>
+                                                    <li>{{ about.experience }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="jp_listing_right_bar_btn_wrapper">
+                                            <div class="jp_listing_right_bar_btn">
+                                                <ul>
+                                                    {#                                                <li><a href="#"><i class="fa fa-plus-circle"></i> &nbsp;Follow Facebook</a>#}
+                                                    {#                                                </li>#}
+                                                    {#                                                <li><a href="#"><i class="fa fa-plus-circle"></i> &nbsp;Follow NOw!</a>#}
+                                                    {#                                                </li>#}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- jp listing Single cont Wrapper End -->
+    {% endif %}
+{% endblock %}
+{% block js %}
+    <script>
+        function initMap() {
+            var uluru = {lat: -36.742775, lng: 174.731559};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                scrollwheel: false,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+
+        $(document).ready(function () {
+            $('.collapsed').click()
+        });
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmdG8C6ItElq5ipuFv6O9AE48wyZm_vqU&amp;callback=initMap">
+    </script>
+{% endblock %}

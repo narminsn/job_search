@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block page %}
+    <div style="background-image: url(https://images.pexels.com/photos/6224/hands-people-woman-working.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&"
+         class="jp_bottom_footer_Wrapper_header_img_wrapper">
+        <div style="background: #0e1427d4;" class="jp_slide_img_overlay"></div>
+        <div class="jp_banner_heading_cont_wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="jp_job_heading_wrapper">
+                            <div class="jp_job_heading">
+                                <h1><span>3,000+</span> Browse Jobs</h1>
+                                <p>Find Jobs, Employment & Career Opportunities</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                        <form action="{% url 'search_home' %}" method="GET">
+
+
+                            <div class="jp_header_form_wrapper">
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                    <input name="title" type="text" value="{{ request.GET.title }}"
+                                           placeholder="Keyword e.g. (Job Title, Description, Tags)">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <div class="jp_form_location_wrapper">
+                                        <i class="fa fa-dot-circle-o first_icon"></i>
+                                        <select name="location">
+                                            <option value="0">Selecet Location</option>
+                                            {% for country in countries %}
+                                                {% if request.GET.location %}
+                                                    {% if country.id|stringformat:"i" == request.GET.location %}
+                                                        <option value="{{ country.id }}"
+                                                                selected>{{ country.name }}</option>
+                                                    {% else %}
+                                                        <option value="{{ country.id }}">{{ country.name }}</option>
+                                                    {% endif %}
+                                                {% else %}
+                                                    <option value="{{ country.id }}">{{ country.name }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select><i class="fa fa-angle-down second_icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <div class="jp_form_exper_wrapper">
+                                        <i class="fa fa-dot-circle-o first_icon"></i><select name="category">
+                                        <option value="0">Experience</option>
+                                        {% for field in category %}
+                                            {% if request.GET.category %}
+                                                {% if field.id|stringformat:"i" == request.GET.category %}
+                                                    <option value="{{ field.id }}"
+                                                            selected>{{ field.name }}</option>
+                                                {% else %}
+                                                    <option value="{{ field.id }}">{{ field.name }}</option>
+                                                {% endif %}
+                                            {% else %}
+                                                <option value="{{ field.id }}">{{ field.name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select><i class="fa fa-angle-down second_icon"></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                    <div class="jp_form_btn_wrapper">
+                                        <ul>
+                                            <li>
+                                                <button name="search" type="submit" style="border: none;"><i
+                                                        class="fa fa-search"></i> Search
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="jp_banner_main_jobs_wrapper">
+                            <div class="jp_banner_main_jobs">
+                                {{ jobs }}
+                                <ul>
+                                    <li><i class="fa fa-tags"></i> Trending Keywords :</li>
+                                    <li><a href="#">ui designer,</a></li>
+                                    <li><a href="#">developer,</a></li>
+                                    <li><a href="#">senior</a></li>
+                                    <li><a href="#">it company,</a></li>
+                                    <li><a href="#">design,</a></li>
+                                    <li><a href="#">call center</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jp popular Categories Wrapper Start -->
+    <div class="jp_popular_category_main_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_popu_cate_heading_wrapper">
+                        <h4>Popular Categories</h4>
+                    </div>
+                </div>
+                {% for field in categories %}
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div style="    margin-top: 30px;"
+                             class="jp_popu_cate_box_main_wrapper jp_popu_cate_box_main_wrapper_second">
+                            <div class="jp_top_jobs_category_wrapper">
+                                <div class="jp_top_jobs_category">
+                                    <i class="fa fa-code"></i>
+                                    <h3><a href="{% url 'jobs' %}">{{ field.name }}</a></h3>
+                                    <p>(240 jobs)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- jp popular Categories Wrapper End -->
+{% endblock %}

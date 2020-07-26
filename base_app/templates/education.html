@@ -1,0 +1,361 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block page %}
+
+    <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script language="javascript" src="https://momentjs.com/downloads/moment.js"></script>
+    <script language="javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
+
+    <main style="background: #13171e;">
+
+        <!-- Page links -->
+        <div style="background: #13171e; border:none;" class="page-links">
+            <div class="container">
+                <div class="pull-left">
+                    <ul class="link-list">
+                        <li><a  href="{% url 'settings_candidate'  %}">Profile</a></li>
+                        <li><a href="{% url 'can_cv'  %}">Curriculum vitae base info</a></li>
+                        <li><a style="color: #3ba6e6;" class="active" href="{% url 'education-settings'  %}">Education and Experience</a></li>
+                        <li><a href="{% url 'settings-skil'  %}">Skills</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- END Page links -->
+        <section style="background: #13171e;" class="no-border-bottom section-sm">
+            <div class="container">
+                <header style="margin-bottom:173px" class="section-header">
+                    <h3 style="color: white;">EDUCATION AND TRAINING</h3>
+                    <h3 style="color: white;">WORK EXPERIENCE</h3>
+
+                    <p>Add your experience and education information</p>
+                </header>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            {#        <th style="color: #d5cece;">#</th>#}
+                            <th style="color: #d5cece;">Name</th>
+                            <th style="color: #d5cece;">Type</th>
+                            <th style="color: #d5cece;">Start Date</th>
+                            <th style="color: #d5cece;">End Date</th>
+                            <th style="color: #d5cece;">Actions</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for field in posts %}
+                            <tr>
+
+                                <td style="color: #50c0ea;">{{ field.name }}</td>
+                                <td style="color: #50c0ea;">{{ field.exp_type }}</td>
+                                <td style="color: #50c0ea;">{{ field.start_date }}</td>
+                                <td style="color: #50c0ea;">{{ field.end_date }}</td>
+                                <td><i data_id="{{ field.id }}" data-toggle="modal" data-target="#myModal"
+                                       data_url="{% url 'edu_edit' field.id %}"
+                                       class="fa fa-edit edit" style="font-size:24px;color: #50c0ea;"></i>
+                                    <i data_id="{{ field.id }}" data-toggle="modal" data-target="#deleteModal" class="fa fa-remove delete"
+                                       data_url="{% url 'edu_delete'  field.id %}"
+                                       style="font-size:27px;color: #50c0ea;margin-left: 6px;"></i></td>
+                                <td></td>
+                            </tr>
+
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jp_adp_choose_resume_bottom_btn_post">
+                        <ul>
+                            <li>
+                                <button style="border: 1px solid #33b0e0;
+    background: #22a9db;" name="create" type="submit" data-toggle="modal" data-target="#createModal"><i></i>&nbsp;ADD
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+    </main>
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('.datepick').datetimepicker({
+                format: 'YYYY-MM-DD ',
+                ignoreReadonly: true
+            });
+            $('.edit').click(function () {
+                console.log('sadf')
+                var data_id = $(this).attr('data_id')
+                var data_url = $(this).attr('data_url')
+                $.ajax({
+                    url: data_url,
+                    method: "GET",
+                    success: function (data) {
+                        $('#edit_form').html(data)
+                        console.log(data)
+
+                    },
+
+                    error: function (xhr, err, msg) {
+                        console.log(xhr, err, msg);
+                    }
+                });
+
+            })
+            $('.delete').click(function () {
+                var data_id = $(this).attr('data_id')
+                var data_url = $(this).attr('data_url')
+                $.ajax({
+                    url: data_url,
+                    method: "GET",
+                    success: function (data) {
+                        $('#delete_modal').html(data)
+
+                    },
+
+                    error: function (xhr, err, msg) {
+                        console.log(xhr, err, msg);
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
+{% endblock %}
+
+
+{% block css %}
+    <style>
+        body {
+            background: #1a1e27;
+
+        }
+
+    </style>
+{% endblock %}
+
+{% block modal %}
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div style="background: #13171e;" class="modal-content">
+                <div style="border:none;" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 style="color: #cbc8c1;;" class="modal-title">Edit your informations</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+                            <div id='edit_form' class="row">
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="border:none" class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="createModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div style="background: #13171e;" class="modal-content">
+                <div style="border:none;" class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 style="color: #8fc2f6;" class="modal-title">ADD MORE EXPERIENCE INFORMATION</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+                            <div class="row">
+
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% for field in forms %}
+                                        {#                                    {% render_field field class="form-control input-lg" placeholder=field.label style="background: #1a1e27;border:none;" %}#}
+
+                                        {% if forloop.counter == 3 or forloop.counter == 4 %}
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group required">
+                                                    <div class="input-group datepick">
+                                                        {% render_field field class="form-control date2" name="date2" id="frmSaveOffice_startdt" placeholder=field.label style="background: #1a1e27;border:none;" %}
+
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        {% elif field.label == 'Description' %}
+                                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                {% render_field field class="form-control input-lg" placeholder=field.label style="background: #1a1e27;border:none;" %}
+                                                {% if field.errors %}
+                                                    {% for msg in field.errors %}
+                                                        <span style="color: white;"
+                                                              class="text-danger">{{ msg }}</span>
+                                                    {% endfor %}
+                                                {% endif %}
+
+                                            </div>
+                                        {% else %}
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                {% render_field field class="form-control input-lg" placeholder=field.label style="background: #1a1e27;border:none;" %}
+                                                {% if field.errors %}
+                                                    {% for msg in field.errors %}
+                                                        <span style="color: white;"
+                                                              class="text-danger">{{ msg }}</span>
+                                                    {% endfor %}
+                                                {% endif %}
+
+                                            </div>
+
+                                        {% endif %}
+                                        {% if field.errors %}
+                                            {{ field.errors }}
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="jp_adp_choose_resume_bottom_btn_post">
+                                            <ul>
+                                                <li>
+                                                    <button name="create" type="submit"><i></i>&nbsp; Save</button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style="border:none" class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="deleteModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div id="delete_modal" style="background: #13171e;"  class="modal-content">
+
+		</div>
+	</div>
+</div>
+<style type="text/css">
+    body {
+		font-family: 'Varela Round', sans-serif;
+	}
+	.modal-confirm {
+		color: #636363;
+		width: 400px;
+	}
+	.modal-confirm .modal-content {
+		padding: 20px;
+		border-radius: 5px;
+		border: none;
+        text-align: center;
+		font-size: 14px;
+	}
+	.modal-confirm .modal-header {
+		border-bottom: none;
+        position: relative;
+	}
+	.modal-confirm h4 {
+		text-align: center;
+		font-size: 26px;
+		margin: 30px 0 -10px;
+	}
+	.modal-confirm .close {
+        position: absolute;
+		top: -5px;
+		right: -2px;
+	}
+	.modal-confirm .modal-body {
+		color: #999;
+	}
+	.modal-confirm .modal-footer {
+		border: none;
+		text-align: center;
+		border-radius: 5px;
+		font-size: 13px;
+		padding: 10px 15px 25px;
+	}
+	.modal-confirm .modal-footer a {
+		color: #999;
+	}
+	.modal-confirm .icon-box {
+		width: 80px;
+		height: 80px;
+		margin: 0 auto;
+		border-radius: 50%;
+		z-index: 9;
+		text-align: center;
+		border: 3px solid #f15e5e;
+	}
+	.modal-confirm .icon-box i {
+		color: #f15e5e;
+		font-size: 46px;
+		display: inline-block;
+		margin-top: 13px;
+	}
+    .modal-confirm .btn {
+        color: #fff;
+        border-radius: 4px;
+		background: #60c7c1;
+		text-decoration: none;
+		transition: all 0.4s;
+        line-height: normal;
+		min-width: 120px;
+        border: none;
+		min-height: 40px;
+		border-radius: 3px;
+		margin: 0 5px;
+		outline: none !important;
+    }
+	.modal-confirm .btn-info {
+        background: #c1c1c1;
+    }
+    .modal-confirm .btn-info:hover, .modal-confirm .btn-info:focus {
+        background: #a8a8a8;
+    }
+    .modal-confirm .btn-danger {
+        background: #f15e5e;
+    }
+    .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+        background: #ee3535;
+    }
+	.trigger-btn {
+		display: inline-block;
+		margin: 100px auto;
+	}
+</style>
+{% endblock %}

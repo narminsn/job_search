@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="UzgxbEbbw6N8kbdiGZVNzSvaVT3WnahqSly1v6ic" />
+    <meta name="viewport"content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Müəssisələr</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'js/owlcarousel/dist/assest/owl.carousel.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/media.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+</head>
+<body>
+<!--HEADER BASLADI-->
+{#{% include 'layouts/header.html' %}#}
+<!--HEADER BITDI-->
+
+<!--MAIN BASLADI-->
+<main>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24304.350687089096!2d49.848462413507505!3d40.407879672930704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d5170017dc7%3A0x4ac898fd7496242b!2zTW9udGluLCBCYWvEsSwgQXrJmXJiYXljYW4!5e0!3m2!1saz!2s!4v1545893666957" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-2"></div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                <div class="form-group">
+                    <input class="form-control input-sm search-2" id="inputsm" type="text" placeholder="Rayon">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                <div class="form-group">
+                    <input class="form-control input-sm search-2" id="inputsm" type="text" placeholder="Məktəb adı">
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-2">
+                <div class="form-group">
+                    <button type="button" class="btn btn-default search-2"><img class="find-icon" src="{% static 'images/assets/search-find.png' %}"></button>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2"></div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <ul class="pagination pagination1">
+                    <li><a href=""><i class="fas fa-home home-icon"></i> <span>&gt;</span> </a></li>
+                    <li><a href=""> Müəssisələr</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2"></div>
+        {% for company in company_list %}
+            {% if forloop.counter0 and forloop.counter0|divisibleby:horizontal_limit %}
+                    <div class="col-lg-1 col-md-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-2"></div>
+            {% endif %}
+            <div class="col-lg-3 col-md-3 col-sm-4 address">
+                <a href=""><h6>{{ company.company_name }}</h6></a>
+                <p>{{ company.address }}</p>
+                <p>{{ company.phone_number }}</p>
+                <p>Sayt: <a href="" target="_blank">{{ company.url }}</a></p>
+            </div>
+        {% endfor %}
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3"></div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                {% if total_pages|length > 1 %}
+                <ul class="pagination pagination2">
+                    {% for i in total_pages %}
+                        <li {% if i == selected_page %}class="active"{% endif %}><a href="?start={{i}}">{{i}}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+        <div class="row end-row">
+            <div class="col-lg-3 col-md-3"></div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <ul class="bas">
+                    <li><a href="">Başlanğıc</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+                <ul class="pagination pagination3">
+                    <li class="arrow1"><a href="?start={{prev_page}}"><span>&lt;</span></a></li>
+                    <li><a href="?start={{next_page}}"><span>&gt;</span></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <ul class="text-center son">
+                    <li><a href="?start={{total_pages|length}}">Son</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3"></div>
+        </div>
+    </div>
+</main>
+<!--MAIN BITDI-->
+
+<!--FOOTER BASLADI-->
+{#{% include 'layouts/footer.html' %}#}
+<!--FOOTER BITDI-->
+<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'css/bootstrap/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/owlcarousel/dist/owl.carousel.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

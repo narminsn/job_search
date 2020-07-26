@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block page %}
+
+    <main>
+
+    <!-- Page links -->
+    <div style="background: #13171e; border:none;" class="page-links">
+        <div class="container">
+            <div class="pull-left">
+                <ul class="link-list">
+                    <li><a class="active" href="setting-profile.html">Profile</a></li>
+                    <li><a href="setting-socials.html">Social medias</a></li>
+                    <li><a href="setting-notification.html">Notification</a></li>
+                    <li><a href="setting-security.html">Security</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END Page links -->
+    <section style="background: #13171e;" class="no-border-bottom section-sm">
+        <div class="container">
+            <header class="section-header">
+                <h3 style="color: white;">Profile settings</h3>
+                <p>Change your name, avatar, location, description, etc.</p>
+            </header>
+
+                    <div class="row">
+        <div class="col-lg-8 col-md-8 col-md-8 col-xs-12">
+            <div class="row">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in forms %}
+
+                        {% if field.label == 'Document' %}
+                            <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+
+                                <div style="top: 26px;" class="custom-file">
+                                    {% render_field field placeholder=field.label class="custom-file-input" id="customFile" %}
+
+                                    {#                                    <input type="file" class="custom-file-input" id="customFile">#}
+                                    <label style=" border:none;   background: #1a1e27;" class="custom-file-label"
+                                           for="customFile">Choose file</label>
+                                </div>
+                            </div>
+                            {% elif field.label == 'Image post' %}
+                            <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+
+                                <div style="top: 26px;" class="custom-file">
+                                    {% render_field field placeholder=field.label class="custom-file-input" id="customFile" %}
+
+                                    {#                                    <input type="file" class="custom-file-input" id="customFile">#}
+                                    <label style=" border:none;   background: #1a1e27;" class="custom-file-label"
+                                           for="customFile">Choose file</label>
+                                </div>
+                            </div>
+
+                        {% elif field.label == 'About' %}
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="jp_adp_textarea_main_wrapper">
+                                    {% render_field field placeholder=field.label rows='7' %}
+                                    {#                						<textarea rows="7" placeholder="Job Description"></textarea>#}
+                                </div>
+                            </div>
+                        {% elif field.label == 'Job description' %}
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="jp_adp_textarea_main_wrapper">
+                                    {% render_field field placeholder=field.label rows='7' %}
+                                    {#                						<textarea rows="7" placeholder="Job Description"></textarea>#}
+                                </div>
+                            </div>
+
+                        {% elif field.label == 'Country' %}
+                            <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                <div class="jp_adp_form_wrapper">
+                                    {% render_field field placeholder=field.label id='country' %}
+
+                                </div>
+                            </div>
+                            {% elif field.label == 'City post' %}
+                            <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                <div class="jp_adp_form_wrapper">
+                                    <select name="city" id="city">
+                                        <option value="">Choose City</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-lg-6 col-md-6 col-md-6 col-xs-12">
+                                <div class="jp_adp_form_wrapper">
+                                    {% render_field field placeholder=field.label %}
+
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if field.errors %}
+                            {{ field.errors }}
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="jp_adp_choose_resume_bottom_btn_post">
+                            <ul>
+                                <li>
+                                    <button type="submit"><i ></i>&nbsp; Save</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+                <div class="col-lg-4 col-md-4 col-md-4 col-xs-12">
+                  <div class="card">
+                        <div class="card-header">
+                            <h6>Avatar</h6>
+                        </div>
+
+                        <div class="card-block">
+                            <form method="post" enctype="multipart/form-data">
+                                <input type="file" class="dropify" data-default-file="assets/img/avatar-2.jpg"
+                                       >
+                                <br>
+                                <button class="btn btn-primary btn-sm" type="submit">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+        </div>
+    </section>
+
+    </main>
+{% endblock %}
